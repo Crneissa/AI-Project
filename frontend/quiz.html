@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FocusUp - Quizzes</title>
+    <link rel="stylesheet" href="stylesheets/quiz.css"> </head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Sorts+Mill+Goudy:ital@0;1&display=swap" rel="stylesheet">
+
+<body>
+    <div id="sidebar" class="sidebar">
+        <button class="close-btn" onclick="toggleSidebar()">×</button>
+        <a href="#" onclick="location.href='/home'">
+            <h2 class="logo">FocusUp</h2>
+        </a>
+        <nav>
+            <a href="#" onclick="location.href='/summary'">Notes</a>
+            <a href="#" onclick="location.href='/quiz'">Quizzes</a>
+        </nav>
+    </div>
+
+    <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+
+    <div class="container">
+        <h1 class="title">Test Your Understanding</h1>
+
+        <div id="quiz-prompt" class="quiz-prompt">
+            <label for="num-questions">How many questions would you like to generate?</label>
+            <input type="number" id="num-questions" min="1" value="5">
+            <button id="start-quiz">Start Quiz</button>
+        </div>
+
+        <div id="quiz-content" class="quiz-container" style="display:none;">
+            <p id="question-text" class="question"></p>
+            <div id="options-container">
+                </div>
+        </div>
+
+        <div class="progress-container" style="display:none;">
+            <div id="progress-bar" class="progress-bar">0%</div>
+        </div>
+        <div class="nav-buttons" style="display:none;">
+            <button id="prev-question">Previous</button>
+            <button id="next-question">Next</button>
+        </div>
+    </div>
+
+    <script src="scripts/quiz.js"></script>
+</body>

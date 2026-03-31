@@ -1,0 +1,192 @@
+/* General Styles */
+body {
+    margin: 0;
+    font-family: 'Nunito Sans', sans-serif; /* Apply Nunito Sans to body */
+    background-color: white;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensure full viewport height */
+}
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -250px;
+            width: 250px;
+            height: 100%;
+            background-color: #4C787E;
+            padding-top: 20px;
+            transition: 0.3s;
+            box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .sidebar.open {
+            left: 0;
+        }
+
+        .sidebar .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: white;
+            cursor: pointer;
+        }
+
+        .sidebar .logo {
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+        }
+
+        h1, a{
+            text-decoration: none;
+        }
+
+        .sidebar nav {
+            display: flex;
+            flex-direction: column;
+            margin-top: 20px;
+            padding-left: 20px;
+        }
+
+        .sidebar nav a {
+            text-decoration: none;
+            color: white;
+            padding: 10px 0;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .sidebar nav a:hover {
+            color: #a8e6cf;
+        }
+
+        /* Menu Button */
+        .menu-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background-color: #4C787E;
+            color: white;
+            border: none;
+            font-size: 24px;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+/* Main Content */
+.container {
+    width: 80%;
+    max-width: 800px;
+    margin: 20px auto;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Align to top initially */
+    transition: transform 0.3s ease;
+}
+
+/* Chat Container */
+.chat-container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    overflow-y: auto; /* Only chat scrolls */
+    max-height: 90vh; /* Set a max-height */
+    padding-bottom: 80px; /* Space for input */
+    scroll-behavior: smooth; /* Smooth auto-scroll */
+}
+
+.title {
+    font-size: 40px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 250px;
+}
+        
+
+/* Message Styles */
+.message {
+    padding: 10px;
+    margin-bottom: 50px;
+    border-radius: 8px;
+    max-width: 70%;
+    clear: both;
+    word-wrap: break-word;
+}
+
+.message.user-message {
+    background-color: #e0e0e0;
+    float: right;
+    margin-left: 30%;
+}
+
+.message.bot-message {
+    background-color: #92C7C7;
+    color: white;
+    float: left;
+    margin-right: 30%;
+    margin-bottom: 20px;
+}
+
+/* Input Box */
+.input-container {
+    display: flex;
+    align-items: center;
+    background: #f0f0f0;
+    padding: 10px;
+    border-radius: 40px;
+    width: 100%; /* Input takes full width */
+    position: relative; /* Relative to container */
+    bottom: 10px; /* Align to bottom of container */
+    transition: position 0.3s ease, transform 0.3s ease; /* Add transition */
+}
+.input-container.fixed {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 30px; /* Fixed to viewport bottom */
+    width: 50%; /* Adjust width as needed */
+}
+
+.input-container input {
+    flex: 1;
+    border: none;
+    outline: none;
+    margin-left: 15px;
+    font-size: 16px;
+    background: transparent;
+}
+
+.send-btn {
+    background: #4C787E;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.send-btn:hover {
+    background: #92C7C7;
+}
+
+/* Auto-scroll behavior */
+#results::-webkit-scrollbar {
+    width: 6px;
+}
+
+#results::-webkit-scrollbar-thumb {
+    background-color: #4C787E;
+    border-radius: 10px;
+}

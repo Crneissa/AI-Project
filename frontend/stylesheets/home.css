@@ -1,0 +1,250 @@
+/* General Styles */
+body {
+    font-family: 'Nunito Sans', sans-serif; /* Apply Nunito Sans to body */
+    margin: 0;
+    padding: 0; /* Fixed: Added missing value */
+    text-align: center;
+    background-color: #102020; /* Fixed: Added missing # */
+    color: #333;
+}
+
+h1, h2, h3 {
+    font-weight: 600;
+}
+
+/* Hero Section */
+.focusup {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)),
+                url('https://regionalneurological.com/wp-content/uploads/2020/03/Regional-Neurological_Brain-Science.jpeg')
+                center/cover no-repeat;
+    color: white;
+    padding: 2cm; /* Increased padding to make the section bigger */
+    text-align: left; /* Align text to the left */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align all child elements to the left */
+    justify-content: center; /* Vertically center the content */
+    max-width: 100%; /* Allow the section to take full width */
+    height: 80vh; /* Make the section 80% of the viewport height */
+    margin: 0 auto; /* Center the header horizontally */
+}
+
+.focusup h1 {
+    font-size: 72px; /* Increased font size for the heading */
+    margin-bottom: 30px; /* Increased margin for better spacing */
+    text-transform: uppercase;
+}
+
+.focusup p {
+    font-size: 25px; /* Increased font size for the paragraph */
+    max-width: 800px; /* Increased max-width for better readability */
+    margin: 0 0 10px 0; /* Reduced margin-bottom to bring paragraphs closer */
+}
+.focusup p:last-of-type {
+    margin-bottom: 60px; /* Add space between the last <p> and the button */
+}
+.upload-btn {
+    background: #102020; /* Light blue background */
+    color: white;
+    padding: 15px 30px; /* Increased padding to make the button bigger */
+    border: none;
+    border-radius: 12px; /* Increased border radius for a softer look */
+    font-size: 16px; /* Increased font size */
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.upload-btn:hover {
+    background: #4C787E; /* Darker blue background on hover */
+}
+
+/* Info Section */
+.info {
+    padding: 80px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+    background-image: url('https://images.unsplash.com/photo-1530293959042-0aac487c21e3?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8bGlnaHQlMjBibHVlJTIwYmFja2dyb3VuZHxlbnwwfHwwfHx8MA%3D%3D');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    text-align: left;
+}
+
+.info p {
+    font-size: 20px;
+    font-family: 'Nunito Sans', sans-serif; /* Apply Nunito Sans to body */
+}
+.info .text {
+    flex: 1; /* Allow text to take up available space */
+    max-width: 60%; /* Limit text width to 60% of the container */
+    text-align: left; /* Align text to the left */
+    line-height: 2; /* Double-spaced text */
+}
+
+.info-container {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    max-width: 1100px;
+    width: 100%;
+}
+
+.info img {
+    width: 380px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.info img:hover {
+    transform: scale(1.05);
+}
+
+.attention-span {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Space out text and image */
+    padding: 80px 20px; /* Increased padding to expand the section */
+    background: white;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    gap: 60px; /* Increased gap between text and image
+  */
+  padding: 3cm;
+   
+    margin: 0 auto; /* Center the container horizontally */
+}
+.attention-span .text {
+    flex: 1; /* Allow text to take up available space */
+    max-width: 50%; /* Reduce text width to 50% of the container */
+    text-align: left; /* Align text to the left */
+    margin-left: 20px; /* Add left margin to push text further left */
+    line-height: 2; /* Double-spaced text */
+}
+.attention-span .text {
+    flex: 1; /* Allow text to take up available space */
+    max-width: 50%; /* Reduce text width to 50% of the container */
+    text-align: left; /* Align text to the left */
+    margin-left: 20px; /* Add left margin to push text further left */
+}
+.attention-span .text h1 {
+   font-size: 40px;
+}
+.attention-span img {
+    width: 400px; /* Increased image size */
+    border-radius: 30px;
+    filter: hue-rotate(120deg) brightness(100%) contrast(100%);
+    transition: transform 0.3s ease;
+}
+
+.attention-span img:hover {
+    transform: scale(1.05);
+}
+
+.attention-span p {
+    font-size: 20px;
+    font-family: 'Nunito Sans', sans-serif; /* Apply Nunito Sans to body */
+    margin-top: 15px;
+}
+
+/* Features Section */
+.features {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    padding: 60px 20px;
+    background: #102020; /* Updated color */
+}
+
+.features h2 {
+    color: white; /* Set the text color to white */
+    font-size: 38px; /* Optional: Adjust font size if needed */
+    margin-bottom: 20px; /* Optional: Adjust margin for spacing */
+}
+
+.upload-container {
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.upload-container input {
+    display: none;
+}
+
+.upload-container label {
+    background: white; /* Updated color */
+    color: #4C787E;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    display: inline-block;
+}
+
+.upload-container label:hover {
+    background: #4C787E;
+    color: white; /* Fixed: Added missing semicolon */
+}
+
+.feature-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 columns with equal width */
+    gap: 30px; /* Space between the boxes */
+    width: 100%;
+    max-width: 1200px; /* Limit the maximum width of the container */
+    margin: 0 auto; /* Center the container horizontally */
+    padding: 20px; /* Optional: Add padding to the container */
+}
+
+.feature {
+    background: white;
+    padding: 40px; /* Increased padding to make the boxes bigger */
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.feature img {
+    width: 100px; /* Increased image size */
+    margin-bottom: 20px; /* Increased margin for better spacing */
+}
+
+.feature h3 {
+    font-size: 28px; /* Increased font size for the heading */
+    margin-bottom: 15px; /* Adjusted margin for better spacing */
+}
+
+.feature p {
+    font-size: 18px; /* Increased font size for the paragraph */
+    margin-bottom: 20px; /* Adjusted margin for better spacing */
+}
+
+.feature button {
+    background-color: #102020;
+    color: white;
+    padding: 15px 30px; /* Increased button padding */
+    border: none;
+    border-radius: 6px;
+    font-size: 18px; /* Increased font size for the button */
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.feature button:hover {
+    background-color: #4C787E;
+}

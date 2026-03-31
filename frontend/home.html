@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FocusUP</title>
+    <link rel="stylesheet" href="stylesheets/home.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Sorts+Mill+Goudy:ital@0;1&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="focusup">
+        <h1>FocusUP</h1>
+        <p>Ready to study and crush your goals?</p> <p>FocusUP is here to power your productivity!</p>
+        <button class="upload-btn">Get Started</button>
+    </header>
+    <section class="info">
+        <div class="info-container">
+            <img src="https://dulaneygriffin.org/wp-content/uploads/2023/02/Melito.attention-spans-900x754.png">
+            <div class="text">
+                <h2>Short Attention Span? </h2>
+                <p>Struggling to stay focused? Constantly getting distracted? We’ve got the perfect solution for you!FocusUP keeps you on track with smart eye-tracking, real-time alerts, and interactive study tools. Upload your PDF, choose notes or quizzes, and stay fully engaged—no more wasted study sessions!</p>
+            </div>
+        </div>
+    </section>
+    <section class="attention-span">
+        <div class="text">
+            <h1>How to Use it?</h1>
+            <p>☑ Upload your PDF – your study material, your way! </p>
+            <p> ☑ Choose your mode – get summary notes or challenge yourself with quizzes. </p>
+            <p> ☑ Eye-tracking activates upon selection, monitoring focus. </p>
+            <p>☑ Stay focused – eye-tracking alerts you if you get distracted! <p>
+        </div>
+        <div class="image">
+            <img src="https://s.smallpdf.com/static/cms/f/102628/x/0ca6e28346/220902_howtopdfie.svg">
+        </div>
+    </section>
+    <section class="features">
+        <h2>Ready to Lock in? Upload your PDF here!</h2>
+        <div class="upload-container">
+            <input type="file" id="pdfUpload" accept="application/pdf">
+            <label for="pdfUpload">Upload PDF</label>
+        </div>
+        <div class="feature-container">
+            <div class="feature">
+                <img src="https://cdn3d.iconscout.com/3d/premium/thumb/ask-question-3d-icon-download-in-png-blend-fbx-gltf-file-formats--faq-help-answer-questions-pack-services-icons-5251295.png?f=webp" alt="Summary Notes">
+                <h3>New Chat</h3>
+                <p>Upload your PDF and get clear, concise notes straight to the point, and ask anything!</p>
+                <a href="#" onclick="location.href='/summary'" id="summary-link"><button>Get Notes</button></a>
+            </div>
+            <div class="feature">
+                <img src="https://media.istockphoto.com/id/1433122206/vector/question-bubbles-line-icon-vector.jpg?s=612x612&w=0&k=20&c=YOlrHcUKszzjlcU1lLc4XN-hJYUITbTauf1XrQr_PIk=" alt="Quizzes">
+                <h3>Quizzes</h3>
+                <p>Upload a PDF, turn it into a quiz, and challenge yourself! Score that A+!</p>
+                <a href="#" onclick="location.href='/quiz'" id="quiz-link"><button>Take Quizzes</button></a>
+            </div>
+        </div>
+    </section>
+    <script src="scripts/home.js"></script>
+</body>
+</html>
