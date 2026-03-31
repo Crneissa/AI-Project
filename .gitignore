@@ -1,3 +1,4 @@
 backend/API_KEY.txt
 .env
+backend/.env
 venv/
