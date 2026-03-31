@@ -1,5 +1,3 @@
-Here’s a cleaner, more professional version of your README with better structure, clarity, and formatting:
-
 ---
 
 # AI Project
