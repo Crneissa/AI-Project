@@ -63,5 +63,6 @@ python app.py
 
 * Make sure your virtual environment is activated before installing dependencies or running the app.
 * Keep your `.env` file private and do not commit it to version control.
+* This version of the code was built and tested in Python 3.10
 
 ---
