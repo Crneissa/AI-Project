@@ -17,12 +17,12 @@ class AdaptiveDecisionTree:
     def build_tree(self):
         return DecisionNode(
             feature="attention",
-            threshold=0.4,
+            threshold=0.7,
 
-            # if attention < 0.4 -> easy
+            # if attention < 0.7 -> user seems less focused -> easy
             left=DecisionNode(result="easy"),
 
-            # else continue
+            # else continue checking performance
             right=DecisionNode(
                 feature="correct_streak",
                 threshold=2,
@@ -39,17 +39,8 @@ class AdaptiveDecisionTree:
                     right=DecisionNode(result="easy"),
                 ),
 
-                # if correct_streak >= 2 -> check score
-                right=DecisionNode(
-                    feature="score",
-                    threshold=70,
-
-                    # if score < 70 -> medium
-                    left=DecisionNode(result="medium"),
-
-                    # if score >= 70 -> hard
-                    right=DecisionNode(result="hard"),
-                ),
+                # if correct_streak >= 2 -> hard
+                right=DecisionNode(result="hard"),
             ),
         )
 

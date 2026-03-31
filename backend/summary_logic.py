@@ -11,7 +11,7 @@ generativeai.configure(api_key=get_api_key())
 
 def answer_prompt(pdf_text: str, user_prompt: str) -> str:  # Changed to accept text
     try:
-        model = generativeai.GenerativeModel('gemini-1.5-flash')
+        model = generativeai.GenerativeModel('gemini-2.5-flash')
         response = model.generate_content([user_prompt, pdf_text])  # Send text directly
         return response.text
     except Exception as e:
