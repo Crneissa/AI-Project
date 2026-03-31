@@ -1,5 +1,3 @@
----
-
 # AI Project
 
 ## Setup Instructions
