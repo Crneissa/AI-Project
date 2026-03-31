@@ -4,17 +4,336 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FocusUp - Quizzes</title>
-    <link rel="stylesheet" href="stylesheets/quiz.css"> </head>
+    <title>MindAI - Quizzes</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Sorts+Mill+Goudy:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --blue-primary: #1a5fb4;
+            --blue-dark: #0d3b7a;
+            --blue-light: #4a90d9;
+            --blue-accent: #63a8e8;
+            --blue-soft: #e8f2fc;
+            --blue-mid: #2f72c4;
+            --white: #ffffff;
+            --text-dark: #0d2a4f;
+            --text-mid: #2c4a6e;
+            --text-light: #5a7fa8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Nunito Sans', sans-serif;
+            background: var(--white);
+            color: var(--text-dark);
+            min-height: 100vh;
+        }
+
+        /* ── SIDEBAR ── */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -260px;
+            width: 260px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--blue-dark) 0%, var(--blue-primary) 100%);
+            color: var(--white);
+            padding: 30px 24px;
+            transition: left 0.3s ease;
+            z-index: 1000;
+            box-shadow: 4px 0 24px rgba(13,59,122,0.25);
+        }
+
+        .sidebar.open {
+            left: 0;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.8rem;
+            cursor: pointer;
+            position: absolute;
+            top: 18px;
+            right: 20px;
+            line-height: 1;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+
+        .close-btn:hover {
+            opacity: 1;
+        }
+
+        .logo {
+            font-family: 'Sorts Mill Goudy', serif;
+            font-size: 1.8rem;
+            color: var(--white);
+            margin-top: 20px;
+            margin-bottom: 40px;
+            letter-spacing: 1px;
+            cursor: pointer;
+        }
+
+        .sidebar nav {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .sidebar nav a {
+            color: rgba(255,255,255,0.85);
+            text-decoration: none;
+            font-size: 1.05rem;
+            font-weight: 600;
+            padding: 12px 16px;
+            border-radius: 12px;
+            transition: all 0.2s ease;
+        }
+
+        .sidebar nav a:hover {
+            background: rgba(255,255,255,0.15);
+            color: var(--white);
+        }
+
+        /* ── MENU BUTTON ── */
+        .menu-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: var(--blue-primary);
+            color: var(--white);
+            border: none;
+            border-radius: 12px;
+            width: 46px;
+            height: 46px;
+            font-size: 1.3rem;
+            cursor: pointer;
+            z-index: 999;
+            box-shadow: 0 4px 16px rgba(26,95,180,0.3);
+            transition: all 0.2s ease;
+        }
+
+        .menu-btn:hover {
+            background: var(--blue-dark);
+            transform: translateY(-1px);
+        }
+
+        /* ── MAIN CONTAINER ── */
+        .container {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 100px 40px 60px;
+        }
+
+        .title {
+            font-family: 'Sorts Mill Goudy', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--blue-dark);
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        /* ── QUIZ PROMPT ── */
+        .quiz-prompt {
+            background: var(--blue-soft);
+            border: 2px solid rgba(26,95,180,0.15);
+            border-radius: 20px;
+            padding: 40px 36px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            text-align: center;
+        }
+
+        .quiz-prompt label {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-mid);
+        }
+
+        .quiz-prompt input[type="number"] {
+            width: 100px;
+            padding: 12px 16px;
+            border: 2px solid var(--blue-accent);
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-family: 'Nunito Sans', sans-serif;
+            color: var(--text-dark);
+            text-align: center;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .quiz-prompt input[type="number"]:focus {
+            border-color: var(--blue-primary);
+        }
+
+        #start-quiz {
+            padding: 14px 44px;
+            background: var(--blue-primary);
+            color: var(--white);
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 700;
+            font-family: 'Nunito Sans', sans-serif;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(26,95,180,0.3);
+            transition: all 0.3s ease;
+            letter-spacing: 0.4px;
+        }
+
+        #start-quiz:hover {
+            background: var(--blue-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 28px rgba(26,95,180,0.4);
+        }
+
+        /* ── QUIZ CONTENT ── */
+        .quiz-container {
+            background: var(--white);
+            border: 2px solid var(--blue-soft);
+            border-radius: 20px;
+            padding: 40px 36px;
+            box-shadow: 0 4px 24px rgba(26,95,180,0.08);
+        }
+
+        .question {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 28px;
+            line-height: 1.6;
+        }
+
+        #options-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        #options-container button,
+        #options-container label {
+            display: block;
+            width: 100%;
+            padding: 14px 20px;
+            background: var(--blue-soft);
+            border: 2px solid transparent;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: 'Nunito Sans', sans-serif;
+            color: var(--text-mid);
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.2s ease;
+            font-weight: 600;
+        }
+
+        #options-container button:hover,
+        #options-container label:hover {
+            border-color: var(--blue-accent);
+            background: #d6e9f8;
+            color: var(--blue-dark);
+        }
+
+        #options-container button.selected,
+        #options-container button.active {
+            background: var(--blue-primary);
+            color: var(--white);
+            border-color: var(--blue-primary);
+        }
+
+        /* ── PROGRESS BAR ── */
+        .progress-container {
+            margin-top: 28px;
+            background: var(--blue-soft);
+            border-radius: 50px;
+            height: 22px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--blue-primary), var(--blue-accent));
+            border-radius: 50px;
+            width: 0%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--white);
+            transition: width 0.4s ease;
+            min-width: 36px;
+        }
+
+        /* ── NAV BUTTONS ── */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 24px;
+            gap: 16px;
+        }
+
+        .nav-buttons button {
+            flex: 1;
+            padding: 14px 28px;
+            border: 2px solid var(--blue-primary);
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 700;
+            font-family: 'Nunito Sans', sans-serif;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        #prev-question {
+            background: var(--white);
+            color: var(--blue-primary);
+        }
+
+        #prev-question:hover {
+            background: var(--blue-soft);
+        }
+
+        #next-question {
+            background: var(--blue-primary);
+            color: var(--white);
+            border-color: var(--blue-primary);
+        }
+
+        #next-question:hover {
+            background: var(--blue-dark);
+            border-color: var(--blue-dark);
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 80px 20px 40px;
+            }
+
+            .quiz-prompt,
+            .quiz-container {
+                padding: 28px 20px;
+            }
+        }
+    </style>
+</head>
 
 <body>
     <div id="sidebar" class="sidebar">
         <button class="close-btn" onclick="toggleSidebar()">×</button>
         <a href="#" onclick="location.href='/home'">
-            <h2 class="logo">FocusUp</h2>
+            <h2 class="logo">MindAI</h2>
         </a>
         <nav>
             <a href="#" onclick="location.href='/summary'">Notes</a>
@@ -35,8 +354,7 @@
 
         <div id="quiz-content" class="quiz-container" style="display:none;">
             <p id="question-text" class="question"></p>
-            <div id="options-container">
-                </div>
+            <div id="options-container"></div>
         </div>
 
         <div class="progress-container" style="display:none;">
@@ -48,5 +366,11 @@
         </div>
     </div>
 
+    <script>
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('open');
+        }
+    </script>
     <script src="scripts/quiz.js"></script>
 </body>
+</html>
