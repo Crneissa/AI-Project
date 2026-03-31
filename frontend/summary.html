@@ -3,18 +3,276 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="stylesheets/summary.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Sorts+Mill+Goudy:ital@0;1&display=swap" rel="stylesheet">
-    <title>FocusUp - Summary</title>
+    <title>MindAI - Summary</title>
+    <style>
+        :root {
+            --blue-primary: #1a5fb4;
+            --blue-dark: #0d3b7a;
+            --blue-light: #4a90d9;
+            --blue-accent: #63a8e8;
+            --blue-soft: #e8f2fc;
+            --blue-mid: #2f72c4;
+            --white: #ffffff;
+            --text-dark: #0d2a4f;
+            --text-mid: #2c4a6e;
+            --text-light: #5a7fa8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Nunito Sans', sans-serif;
+            background: var(--white);
+            color: var(--text-dark);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* ── SIDEBAR ── */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -260px;
+            width: 260px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--blue-dark) 0%, var(--blue-primary) 100%);
+            color: var(--white);
+            padding: 30px 24px;
+            transition: left 0.3s ease;
+            z-index: 1000;
+            box-shadow: 4px 0 24px rgba(13,59,122,0.25);
+        }
+
+        .sidebar.open {
+            left: 0;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.8rem;
+            cursor: pointer;
+            position: absolute;
+            top: 18px;
+            right: 20px;
+            line-height: 1;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+
+        .close-btn:hover { opacity: 1; }
+
+        .logo {
+            font-family: 'Sorts Mill Goudy', serif;
+            font-size: 1.8rem;
+            color: var(--white);
+            margin-top: 20px;
+            margin-bottom: 40px;
+            letter-spacing: 1px;
+            cursor: pointer;
+        }
+
+        .sidebar nav {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .sidebar nav a {
+            color: rgba(255,255,255,0.85);
+            text-decoration: none;
+            font-size: 1.05rem;
+            font-weight: 600;
+            padding: 12px 16px;
+            border-radius: 12px;
+            transition: all 0.2s ease;
+        }
+
+        .sidebar nav a:hover {
+            background: rgba(255,255,255,0.15);
+            color: var(--white);
+        }
+
+        /* ── MENU BUTTON ── */
+        .menu-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: var(--blue-primary);
+            color: var(--white);
+            border: none;
+            border-radius: 12px;
+            width: 46px;
+            height: 46px;
+            font-size: 1.3rem;
+            cursor: pointer;
+            z-index: 999;
+            box-shadow: 0 4px 16px rgba(26,95,180,0.3);
+            transition: all 0.2s ease;
+        }
+
+        .menu-btn:hover {
+            background: var(--blue-dark);
+            transform: translateY(-1px);
+        }
+
+        /* ── MAIN CONTAINER ── */
+        .container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            max-width: 820px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 80px 24px 24px;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* ── CHAT AREA ── */
+        .chat-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .title {
+            font-family: 'Sorts Mill Goudy', serif;
+            font-size: clamp(1.6rem, 3vw, 2.4rem);
+            color: var(--blue-dark);
+            text-align: center;
+            margin-bottom: 24px;
+            flex-shrink: 0;
+        }
+
+        .message-container {
+            flex: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            padding: 16px 4px;
+            scrollbar-width: thin;
+            scrollbar-color: var(--blue-accent) var(--blue-soft);
+        }
+
+        .message-container::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .message-container::-webkit-scrollbar-track {
+            background: var(--blue-soft);
+            border-radius: 10px;
+        }
+
+        .message-container::-webkit-scrollbar-thumb {
+            background: var(--blue-accent);
+            border-radius: 10px;
+        }
+
+        /* Message bubbles (for use by summary.js) */
+        .message-container .user-msg {
+            align-self: flex-end;
+            background: var(--blue-primary);
+            color: var(--white);
+            padding: 12px 18px;
+            border-radius: 18px 18px 4px 18px;
+            max-width: 75%;
+            font-size: 0.97rem;
+            line-height: 1.6;
+        }
+
+        .message-container .ai-msg {
+            align-self: flex-start;
+            background: var(--blue-soft);
+            color: var(--text-dark);
+            padding: 12px 18px;
+            border-radius: 18px 18px 18px 4px;
+            max-width: 75%;
+            font-size: 0.97rem;
+            line-height: 1.6;
+            border: 1px solid rgba(26,95,180,0.12);
+        }
+
+        /* ── INPUT BAR ── */
+        .input-container {
+            display: flex;
+            gap: 12px;
+            padding: 16px 0 8px;
+            flex-shrink: 0;
+        }
+
+        .input-container input[type="text"] {
+            flex: 1;
+            padding: 14px 20px;
+            border: 2px solid var(--blue-accent);
+            border-radius: 50px;
+            font-size: 1rem;
+            font-family: 'Nunito Sans', sans-serif;
+            color: var(--text-dark);
+            outline: none;
+            background: var(--white);
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .input-container input[type="text"]:focus {
+            border-color: var(--blue-primary);
+            box-shadow: 0 0 0 3px rgba(26,95,180,0.1);
+        }
+
+        .input-container input[type="text"]::placeholder {
+            color: var(--text-light);
+        }
+
+        .send-btn {
+            padding: 14px 32px;
+            background: var(--blue-primary);
+            color: var(--white);
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 700;
+            font-family: 'Nunito Sans', sans-serif;
+            cursor: pointer;
+            box-shadow: 0 4px 16px rgba(26,95,180,0.3);
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .send-btn:hover {
+            background: var(--blue-dark);
+            transform: translateY(-1px);
+            box-shadow: 0 8px 20px rgba(26,95,180,0.4);
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 72px 14px 14px;
+            }
+
+            .send-btn {
+                padding: 14px 20px;
+            }
+        }
+    </style>
 </head>
 <body>
 
     <div id="sidebar" class="sidebar">
         <button class="close-btn" onclick="toggleSidebar()">×</button>
         <a href="#" onclick="location.href='/home'">
-            <h2 class="logo">FocusUp</h2>
+            <h2 class="logo">MindAI</h2>
         </a>
         <nav>
             <a href="#" onclick="location.href='/summary'">Notes</a>
@@ -35,6 +293,11 @@
         </div>
     </div>
 
+    <script>
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('open');
+        }
+    </script>
     <script src="scripts/summary.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
 </body>
