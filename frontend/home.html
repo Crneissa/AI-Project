@@ -3,39 +3,341 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FocusUP</title>
-    <link rel="stylesheet" href="stylesheets/home.css">
+    <title>MindAI</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Sorts+Mill+Goudy:ital@0;1&display=swap" rel="stylesheet">
+    <link href="https://worldhealth.net/wp-content/uploads/2024/03/AdobeStock_138972731-696x430.jpg" rel="stylesheet">
+    <style>
+        :root {
+            --blue-primary: #1a5fb4;
+            --blue-dark: #0d3b7a;
+            --blue-light: #4a90d9;
+            --blue-accent: #63a8e8;
+            --blue-soft: #e8f2fc;
+            --blue-mid: #2f72c4;
+            --white: #ffffff;
+            --text-dark: #0d2a4f;
+            --text-mid: #2c4a6e;
+            --text-light: #5a7fa8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Nunito Sans', sans-serif;
+            background: var(--white);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* ── HEADER ── */
+        header.focusup {
+            background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue-primary) 60%, var(--blue-light) 100%);
+            color: var(--white);
+            text-align: center;
+            padding: 100px 40px 90px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header.focusup::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 70% 40%, rgba(99,168,232,0.25) 0%, transparent 70%);
+        }
+
+        header.focusup::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: var(--white);
+            clip-path: ellipse(55% 100% at 50% 100%);
+        }
+
+        header.focusup h1 {
+            font-family: 'Sorts Mill Goudy', serif;
+            font-size: clamp(3rem, 7vw, 5.5rem);
+            letter-spacing: 2px;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.2);
+        }
+
+        header.focusup p {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            opacity: 0.9;
+            margin-top: 10px;
+            position: relative;
+            z-index: 1;
+            font-weight: 300;
+        }
+
+        .upload-btn {
+            margin-top: 32px;
+            padding: 16px 48px;
+            background: var(--white);
+            color: var(--blue-primary);
+            border: none;
+            border-radius: 50px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            font-family: 'Nunito Sans', sans-serif;
+            cursor: pointer;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.18);
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+        }
+
+        .upload-btn:hover {
+            background: var(--blue-soft);
+            transform: translateY(-3px);
+            box-shadow: 0 14px 35px rgba(0,0,0,0.22);
+        }
+
+        /* ── INFO ── */
+        .info {
+            padding: 80px 60px;
+            background: var(--white);
+        }
+
+        .info-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .info-container img {
+            width: 420px;
+            max-width: 45%;
+            border-radius: 20px;
+            object-fit: cover;
+            box-shadow: 0 10px 40px rgba(26,95,180,0.15);
+            flex-shrink: 0;
+        }
+
+        .info-container .text h2 {
+            font-family: 'Sorts Mill Goudy', serif;
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            color: var(--blue-dark);
+            margin-bottom: 18px;
+        }
+
+        .info-container .text p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: var(--text-mid);
+        }
+
+        /* ── ATTENTION SPAN (How to Use) ── */
+        .attention-span {
+            background: var(--blue-soft);
+            padding: 80px 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 60px;
+        }
+
+        .attention-span .text {
+            max-width: 520px;
+        }
+
+        .attention-span .text h1 {
+            font-family: 'Sorts Mill Goudy', serif;
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            color: var(--blue-dark);
+            margin-bottom: 24px;
+        }
+
+        .attention-span .text p {
+            font-size: 1.05rem;
+            line-height: 2;
+            color: var(--text-mid);
+        }
+
+        .attention-span .image img {
+            width: 380px;
+            max-width: 40vw;
+            border-radius: 20px;
+            object-fit: cover;
+            box-shadow: 0 10px 40px rgba(26,95,180,0.15);
+        }
+
+        /* ── FEATURES ── */
+        .features {
+            padding: 80px 60px;
+            background: var(--white);
+            text-align: center;
+        }
+
+        .features h2 {
+            font-family: 'Sorts Mill Goudy', serif;
+            font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+            color: var(--blue-dark);
+            margin-bottom: 36px;
+        }
+
+        /* Upload */
+        .upload-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 56px;
+        }
+
+        .upload-container input[type="file"] {
+            display: none;
+        }
+
+        .upload-container label {
+            padding: 14px 44px;
+            background: var(--blue-primary);
+            color: var(--white);
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: 'Nunito Sans', sans-serif;
+            box-shadow: 0 6px 20px rgba(26,95,180,0.3);
+            transition: all 0.3s ease;
+            letter-spacing: 0.4px;
+        }
+
+        .upload-container label:hover {
+            background: var(--blue-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 28px rgba(26,95,180,0.4);
+        }
+
+        /* Feature cards */
+        .feature-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .feature {
+            background: var(--white);
+            border: 2px solid var(--blue-soft);
+            border-radius: 24px;
+            padding: 40px 36px;
+            width: 300px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(26,95,180,0.07);
+        }
+
+        .feature:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 40px rgba(26,95,180,0.16);
+            border-color: var(--blue-accent);
+        }
+
+        .feature img {
+            width: 90px;
+            height: 90px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            border: 3px solid var(--blue-soft);
+        }
+
+        .feature h3 {
+            font-family: 'Sorts Mill Goudy', serif;
+            font-size: 1.4rem;
+            color: var(--blue-dark);
+            margin-bottom: 12px;
+        }
+
+        .feature p {
+            font-size: 0.97rem;
+            color: var(--text-mid);
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+
+        .feature button {
+            padding: 12px 32px;
+            background: var(--blue-primary);
+            color: var(--white);
+            border: none;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: 'Nunito Sans', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .feature button:hover {
+            background: var(--blue-dark);
+            transform: translateY(-2px);
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 860px) {
+            .info-container,
+            .attention-span {
+                flex-direction: column;
+                padding: 60px 30px;
+                gap: 36px;
+            }
+
+            .info-container img,
+            .attention-span .image img {
+                width: 100%;
+                max-width: 100%;
+            }
+
+            .features {
+                padding: 60px 30px;
+            }
+        }
+    </style>
 </head>
 <body>
+
     <header class="focusup">
-        <h1>FocusUP</h1>
-        <p>Ready to study and crush your goals?</p> <p>FocusUP is here to power your productivity!</p>
+        <h1>MindAI</h1>
+        <p>Ready to study and crush your goals?</p>
+        <p>MindAI is here to power your productivity!</p>
         <button class="upload-btn">Get Started</button>
     </header>
+
     <section class="info">
         <div class="info-container">
-            <img src="https://dulaneygriffin.org/wp-content/uploads/2023/02/Melito.attention-spans-900x754.png">
+            <img src="https://www.currencytransfer.com/wp-content/uploads/2022/10/robot-3-edit.min_.jpg" alt="AI Assistant">
             <div class="text">
-                <h2>Short Attention Span? </h2>
-                <p>Struggling to stay focused? Constantly getting distracted? We’ve got the perfect solution for you!FocusUP keeps you on track with smart eye-tracking, real-time alerts, and interactive study tools. Upload your PDF, choose notes or quizzes, and stay fully engaged—no more wasted study sessions!</p>
+                <h2>Short Attention Span?</h2>
+                <p>Struggling to stay focused? Constantly getting distracted? We've got the perfect solution for you! MindAI keeps you on track with smart eye-tracking, real-time alerts, and interactive study tools. Upload your PDF, choose notes or quizzes, and stay fully engaged—no more wasted study sessions!</p>
             </div>
         </div>
     </section>
+
     <section class="attention-span">
         <div class="text">
             <h1>How to Use it?</h1>
-            <p>☑ Upload your PDF – your study material, your way! </p>
-            <p> ☑ Choose your mode – get summary notes or challenge yourself with quizzes. </p>
-            <p> ☑ Eye-tracking activates upon selection, monitoring focus. </p>
-            <p>☑ Stay focused – eye-tracking alerts you if you get distracted! <p>
+            <p>☑ Upload your PDF – your study material, your way!</p>
+            <p>☑ Choose your mode – get summary notes or challenge yourself with quizzes.</p>
+            <p>☑ Eye-tracking activates upon selection, monitoring focus.</p>
+            <p>☑ Stay focused – eye-tracking alerts you if you get distracted!</p>
         </div>
         <div class="image">
-            <img src="https://s.smallpdf.com/static/cms/f/102628/x/0ca6e28346/220902_howtopdfie.svg">
+            <img src="https://worldhealth.net/wp-content/uploads/2024/03/AdobeStock_138972731-696x430.jpg" alt="Study Focus">
         </div>
     </section>
+
     <section class="features">
         <h2>Ready to Lock in? Upload your PDF here!</h2>
         <div class="upload-container">
@@ -44,19 +346,20 @@
         </div>
         <div class="feature-container">
             <div class="feature">
-                <img src="https://cdn3d.iconscout.com/3d/premium/thumb/ask-question-3d-icon-download-in-png-blend-fbx-gltf-file-formats--faq-help-answer-questions-pack-services-icons-5251295.png?f=webp" alt="Summary Notes">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTGNKz9dTrpVdOPnEcG4O9BRvLwblyU0z_uA&s" alt="New Chat">
                 <h3>New Chat</h3>
                 <p>Upload your PDF and get clear, concise notes straight to the point, and ask anything!</p>
                 <a href="#" onclick="location.href='/summary'" id="summary-link"><button>Get Notes</button></a>
             </div>
             <div class="feature">
-                <img src="https://media.istockphoto.com/id/1433122206/vector/question-bubbles-line-icon-vector.jpg?s=612x612&w=0&k=20&c=YOlrHcUKszzjlcU1lLc4XN-hJYUITbTauf1XrQr_PIk=" alt="Quizzes">
+                <img src="https://acequiz.ai/_next/image?url=%2Fassets%2F2.jpg&w=3840&q=75" alt="Quizzes">
                 <h3>Quizzes</h3>
                 <p>Upload a PDF, turn it into a quiz, and challenge yourself! Score that A+!</p>
                 <a href="#" onclick="location.href='/quiz'" id="quiz-link"><button>Take Quizzes</button></a>
             </div>
         </div>
     </section>
+
     <script src="scripts/home.js"></script>
 </body>
 </html>
